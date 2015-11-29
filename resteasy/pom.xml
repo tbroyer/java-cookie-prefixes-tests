@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <parent>
+    <groupId>net.ltgt.cookie-prefixes</groupId>
+    <artifactId>java-cookie-prefixes-tests</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>net.ltgt.cookie-prefixes.resteasy</groupId>
+  <artifactId>resteasy-cookie-prefixes-tests</artifactId>
+  <packaging>pom</packaging>
+
+  <modules>
+    <module>resteasy-tjws</module>
+    <module>resteasy-undertow</module>
+    <module>resteasy-jdk-http</module>
+    <module>resteasy-netty</module>
+    <module>resteasy-netty4</module>
+    <module>resteasy-client</module>
+  </modules>
+
+</project>
