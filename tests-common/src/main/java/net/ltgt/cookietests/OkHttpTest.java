@@ -27,11 +27,11 @@ public abstract class OkHttpTest {
           case "/set-secure-cookie/header":
             return new MockResponse()
                 .setResponseCode(204)
-                .addHeader("Set-Cookie", "$Secure-Foo=value;Path=/;Secure;HttpOnly");
+                .addHeader("Set-Cookie", Constants.TEST_SET_COOKIE);
           case "/check-secure-cookie": {
             // XXX: not exactly equivalent to CheckSecureCookie's behavior
             String cookie = request.getHeader("Cookie");
-            if (cookie == null || !cookie.contains("$Secure-Foo")) {
+            if (cookie == null || !cookie.contains(Constants.TEST_COOKIE_NAME)) {
               return new MockResponse().setResponseCode(400);
             }
             return new MockResponse()
@@ -52,11 +52,11 @@ public abstract class OkHttpTest {
   @Test public void checkSecureCookie() throws Exception {
     Response response = new OkHttpClient().newCall(new Request.Builder()
         .url(getUrl("/check-secure-cookie"))
-        .addHeader("Cookie", "$Secure-Foo=value")
+        .addHeader("Cookie", Constants.TEST_COOKIE)
         .build())
         .execute();
     assertThat(response.code()).isEqualTo(200);
-    assertThat(response.body().string()).isEqualTo("$Secure-Foo=value");
+    assertThat(response.body().string()).isEqualTo(Constants.TEST_COOKIE);
   }
 
   @Test public void setSecureCookieViaCookie() throws Exception {
@@ -86,11 +86,11 @@ public abstract class OkHttpTest {
         continue;
       }
       String name = nameValue[0].trim();
-      if (!name.equals("$Secure-Foo")) {
+      if (!name.equals(Constants.TEST_COOKIE_NAME)) {
         continue;
       }
       found = true;
-      assertThat(nameValue[1].trim()).isEqualTo("value");
+      assertThat(nameValue[1].trim()).isEqualTo(Constants.TEST_COOKIE_VALUE);
 
       for (int i = 1; i < parts.length; i++) {
         String part = parts[i];
@@ -103,10 +103,10 @@ public abstract class OkHttpTest {
         } else if (name.equalsIgnoreCase("HttpOnly")) {
           assertThat(nameValue.length).isEqualTo(1);
         } else if (name.equalsIgnoreCase("Domain") || name.equalsIgnoreCase("Expires") || name.equalsIgnoreCase("Max-Age")) {
-          fail("Unexpected $Secure-Foo parameter: " + name);
+          fail("Unexpected " + Constants.TEST_COOKIE_NAME + " parameter: " + name);
         }
       }
     }
-    assertThat(found).named("Found $Secure-Foo cookie").isTrue();
+    assertThat(found).named("Found " + Constants.TEST_COOKIE_NAME + " cookie").isTrue();
   }
 }

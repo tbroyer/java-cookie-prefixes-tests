@@ -10,7 +10,7 @@ public class ServletCookieTest {
   @Test public void newCookie() {
     Cookie cookie;
     try {
-      cookie = new Cookie("$Secure-Foo", "value");
+      cookie = new Cookie(Constants.TEST_COOKIE_NAME, Constants.TEST_COOKIE_VALUE);
     } catch (IllegalArgumentException iae) {
       fail();
       return;

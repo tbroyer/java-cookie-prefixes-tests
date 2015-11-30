@@ -10,12 +10,12 @@ public class JavaNetHttpCookieTest {
   @Test public void newHttpCookie() {
     HttpCookie cookie;
     try {
-      cookie = new HttpCookie("$Secure-Foo", "value");
+      cookie = new HttpCookie(Constants.TEST_COOKIE_NAME, Constants.TEST_COOKIE_VALUE);
     } catch (IllegalArgumentException iae) {
       fail();
       return;
     }
     cookie.setVersion(0);
-    assertEquals("$Secure-Foo=value", cookie.toString());
+    assertEquals(Constants.TEST_COOKIE, cookie.toString());
   }
 }

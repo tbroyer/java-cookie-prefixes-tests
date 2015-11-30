@@ -12,7 +12,7 @@ import javax.ws.rs.core.Response;
 public class CheckSecureCookie {
   @GET
   public Response get(@Context HttpHeaders httpHeaders) {
-    Cookie secureFoo = httpHeaders.getCookies().get("$Secure-Foo");
+    Cookie secureFoo = httpHeaders.getCookies().get(Constants.TEST_COOKIE_NAME);
     if (secureFoo == null) {
       return Response.status(Response.Status.BAD_REQUEST).build();
     }

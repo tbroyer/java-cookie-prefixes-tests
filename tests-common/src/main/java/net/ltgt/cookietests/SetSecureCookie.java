@@ -12,7 +12,8 @@ public class SetSecureCookie {
   @Path("/cookie")
   public Response cookie() {
     return Response.noContent()
-        .cookie(new NewCookie("$Secure-Foo", "value", "/", null, 0, null, NewCookie.DEFAULT_MAX_AGE, null, true, true))
+        .cookie(new NewCookie(Constants.TEST_COOKIE_NAME, Constants.TEST_COOKIE_VALUE,
+            "/", null, 0, null, NewCookie.DEFAULT_MAX_AGE, null, true, true))
         .build();
   }
 
@@ -20,7 +21,7 @@ public class SetSecureCookie {
   @Path("/header")
   public Response header() {
     return Response.noContent()
-        .header(HttpHeaders.SET_COOKIE, "$Secure-Foo=value;Path=/;Secure")
+        .header(HttpHeaders.SET_COOKIE, Constants.TEST_SET_COOKIE)
         .build();
   }
 }

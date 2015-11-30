@@ -21,19 +21,19 @@ public abstract class JaxrsClientTest {
   @Test public void checkSecureCookieViaCookie() throws Exception {
     Response response = getClient().target(mockWebServer.url("/check-secure-cookie").toString())
         .request()
-        .cookie(new Cookie("$Secure-Foo", "value", null, null, 0))
+        .cookie(new Cookie(Constants.TEST_COOKIE_NAME, Constants.TEST_COOKIE_VALUE, null, null, 0))
         .get();
     assertThat(response.getStatus()).isEqualTo(200);
-    assertThat(response.readEntity(String.class)).isEqualTo("$Secure-Foo=value");
+    assertThat(response.readEntity(String.class)).isEqualTo(Constants.TEST_COOKIE);
   }
 
   @Test public void checkSecureCookieViaHeader() throws Exception {
     Response response = getClient().target(mockWebServer.url("/check-secure-cookie").toString())
         .request()
-        .header("Cookie", "$Secure-Foo=value")
+        .header("Cookie", Constants.TEST_COOKIE)
         .get();
     assertThat(response.getStatus()).isEqualTo(200);
-    assertThat(response.readEntity(String.class)).isEqualTo("$Secure-Foo=value");
+    assertThat(response.readEntity(String.class)).isEqualTo(Constants.TEST_COOKIE);
   }
 
   @Test public void setSecureCookie() throws Exception {
@@ -41,10 +41,10 @@ public abstract class JaxrsClientTest {
         .request()
         .get();
     assertThat(response.getStatusInfo().getFamily()).isEqualTo(Response.Status.Family.SUCCESSFUL);
-    assertThat(response.getCookies()).named("cookies").containsKey("$Secure-Foo");
-    NewCookie cookie = response.getCookies().get("$Secure-Foo");
-    assertThat(cookie.getName()).named("name").isEqualTo("$Secure-Foo");
-    assertThat(cookie.getValue()).named("value").isEqualTo("value");
+    assertThat(response.getCookies()).named("cookies").containsKey(Constants.TEST_COOKIE_NAME);
+    NewCookie cookie = response.getCookies().get(Constants.TEST_COOKIE_NAME);
+    assertThat(cookie.getName()).named("name").isEqualTo(Constants.TEST_COOKIE_NAME);
+    assertThat(cookie.getValue()).named("value").isEqualTo(Constants.TEST_COOKIE_VALUE);
     assertThat(cookie.isSecure()).named("Secure").isTrue();
     assertThat(cookie.isHttpOnly()).named("HttpOnly").isTrue();
     assertThat(cookie.getDomain()).named("Domain").isNull();
