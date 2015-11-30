@@ -45,7 +45,7 @@ public abstract class JaxrsClientTest {
     NewCookie cookie = response.getCookies().get(Constants.TEST_COOKIE_NAME);
     assertThat(cookie.getName()).named("name").isEqualTo(Constants.TEST_COOKIE_NAME);
     assertThat(cookie.getValue()).named("value").isEqualTo(Constants.TEST_COOKIE_VALUE);
-    assertThat(cookie.isSecure()).named("Secure").isTrue();
+    assertThat(cookie.isSecure()).named("Secure").isFalse();
     assertThat(cookie.isHttpOnly()).named("HttpOnly").isTrue();
     assertThat(cookie.getDomain()).named("Domain").isNull();
     assertThat(cookie.getMaxAge()).named("Max-Age").isLessThan(0);

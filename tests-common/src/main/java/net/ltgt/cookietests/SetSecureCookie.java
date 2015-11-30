@@ -13,7 +13,7 @@ public class SetSecureCookie {
   public Response cookie() {
     return Response.noContent()
         .cookie(new NewCookie(Constants.TEST_COOKIE_NAME, Constants.TEST_COOKIE_VALUE,
-            "/", null, 0, null, NewCookie.DEFAULT_MAX_AGE, null, true, true))
+            "/", null, 0, null, NewCookie.DEFAULT_MAX_AGE, null, false, true))
         .build();
   }
 

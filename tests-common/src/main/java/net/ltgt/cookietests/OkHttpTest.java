@@ -98,11 +98,10 @@ public abstract class OkHttpTest {
         name = nameValue[0].trim();
         if (name.equalsIgnoreCase("Path")) {
           assertThat(nameValue[1]).named("Path").isEqualTo("/");
-        } else if (name.equalsIgnoreCase("Secure")) {
-          assertThat(nameValue.length).isEqualTo(1);
         } else if (name.equalsIgnoreCase("HttpOnly")) {
           assertThat(nameValue.length).isEqualTo(1);
-        } else if (name.equalsIgnoreCase("Domain") || name.equalsIgnoreCase("Expires") || name.equalsIgnoreCase("Max-Age")) {
+        } else if (name.equalsIgnoreCase("Secure") || name.equalsIgnoreCase("Domain")
+            || name.equalsIgnoreCase("Expires") || name.equalsIgnoreCase("Max-Age")) {
           fail("Unexpected " + Constants.TEST_COOKIE_NAME + " parameter: " + name);
         }
       }
