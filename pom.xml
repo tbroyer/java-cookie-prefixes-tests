@@ -19,6 +19,7 @@
     <module>resteasy</module>
     <module>jersey</module>
     <module>javaee</module>
+    <module>cxf</module>
   </modules>
 
 </project>
